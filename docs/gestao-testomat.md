@@ -5,8 +5,10 @@
 O arquivo [casos-web.md](./casos-web.md) contém os 21 casos completos. O arquivo
 `casos-web.json` é sua fonte estruturada; não é um formato nativo de importação Testomat.
 O gerador produz também `casos-testomat.csv`, com as colunas do formato customizado documentado
-com Title, Folder, Description e demais colunas. A importação ainda exige validação na
-conta autenticada: não há afirmação de importação concluída.
+com Title, Folder, Description e demais colunas. A importação foi concluída e
+conferida na conta autenticada: 21 testes manuais, 7 suítes e 3 casos por suíte.
+Pré-condições, passos e resultados esperados foram preservados; o caso WEB-HOM-01
+foi aberto para conferir o conteúdo renderizado.
 
 Na tela Tests, usar o menu de importação de outro TMS/CSV-XLSX, selecionar Testomat.io
 e o CSV. Conferir a prévia: exatamente 7 suítes e 3 casos em cada, descrição com
@@ -33,9 +35,21 @@ senhas e dados pessoais não devem aparecer nas evidências nem no repositório.
 
 ## Situação
 
-Os casos e o plano estão documentados. Criação do projeto, importação, Manual Runs e
-compartilhamento no Testomat dependem de autenticação. Nenhum link de projeto ou execução
-foi inserido porque essas ações ainda não foram concluídas.
+Projeto criado: [Desafio QA Web - Automation Exercise](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/).
+Formato Classical para descrições manuais, sem dados de demonstração. Isso não
+altera os cenários Gherkin do módulo Cypress/Cucumber.
+
+Plano salvo: [Pedido de usuário autenticado](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/plans/484bb46d),
+com os 9 casos e a ordem lógica documentados no plano local. Rodada criada:
+[Manual Run 01](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/launch/cdd2c7f3?entry=912735680).
+No checkpoint, 0/9 concluídos, 0 Passed, 0 Failed, 0 Skipped e 9 Pending.
+Não foi usado Finish Run nem atribuído resultado presumido.
+
+O site Automation Exercise abriu normalmente e foi acessada a página Signup / Login.
+Cadastro de conta de teste, execução dos casos, anexação das evidências, rodada
+completa dos 21 casos e compartilhamento para correção permanecem pendentes.
+Os links acima são de acesso autenticado, não públicos; não foi alterada a exposição
+do projeto nem enviado convite. O vídeo não foi gravado.
 
 Referências: https://docs.testomat.io/project/import-export/import/import-tests-from-csv-xlsx/
 e https://docs.testomat.io/project/runs/reports/
