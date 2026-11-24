@@ -14,6 +14,19 @@ sem package.json compartilhado e sem alterar o projeto iTech.
 - [Roteiro do vídeo](./docs/roteiro-video.md): apresentação de 3 a 5 minutos.
 - [Validação e evidências reais](./docs/resultado-validacao.md): resultados e limitações.
 
+## Gestão no Testomat
+
+- [Projeto](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/):
+  importação conferida de 21 casos manuais, em 7 suítes com 3 casos cada.
+- [Plano E2E](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/plans/484bb46d):
+  Pedido de usuário autenticado, com 9 casos selecionados.
+- [Manual Run 01](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/launch/cdd2c7f3?entry=912735680):
+  rodada aberta, 0/9 concluídos e 9 pendentes no registro deste checkpoint.
+
+Esses endereços exigem autenticação e não são links públicos de correção. A criação
+da rodada não comprova execução ou aprovação; anexos e resultados ainda pendem.
+O compartilhamento para correção e o vídeo permanecem pendentes.
+
 ## Execução rápida
 
 Em terminais separados, a partir da raiz:
