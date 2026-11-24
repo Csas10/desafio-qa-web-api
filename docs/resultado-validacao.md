@@ -70,18 +70,32 @@ Cypress 16.3.0, Linux x64. Nenhum espelho ou rota alternativa foi usado.
 21 casos documentados: PASS na conferência de contagem e unicidade; 7 suítes e 3 casos
 por suíte. Login no Testomat via GitHub concluído. Projeto criado sem dados de demo,
 21 casos importados e contagens conferidas; conteúdo do WEB-HOM-01 inspecionado.
-Plano E2E 484bb46d salvo com 9 casos. Manual Run cdd2c7f3 criada e aberta, com
-0/9 concluídos e 9 Pending; nenhum teste foi marcado Passed, Failed ou Skipped.
-Os links reais de acesso autenticado estão no [guia de gestão](./gestao-testomat.md).
+Plano E2E 484bb46d salvo com 9 casos. A Manual Run cdd2c7f3 foi encerrada em
+24/11/2026, com **7 Passed, 1 Failed e 1 Skipped com motivo Blocked**, sem Pending.
+Os nove casos foram classificados; isso não representa nove aprovações nem execução
+completa dos 21 casos. Evidências reais foram anexadas no Testomat.
 
-Execução dos casos e anexação de evidências: **NOT RUN** neste checkpoint. A página
-Signup / Login do Automation Exercise foi aberta para iniciar o cadastro de teste,
-mas isso não cumpre sozinho um caso. Compartilhamento público para correção:
-**pendente**. Vídeo narrado: **não gravado**. O CSV e a criação da rodada não são
-evidências de testes executados.
+O pedido demonstrativo foi confirmado após validar Blue Top, quantidade 2,
+preço unitário 500 e total 1000, conforme a notação Rs. exibida no site. Login,
+logout, detalhes, quantidade, total, endereços e confirmação passaram. Os endereços
+foram confirmados pelo responsável como inteiramente fictícios. Não se usou cartão
+real; a tela de pagamento preenchida não foi capturada.
 
-Portanto, o material não deve ser declarado integralmente aprovado: há falhas de
-tempo medidas e requisitos de execução/gestão ainda não concluídos.
+WEB-CAD-01 ficou bloqueado: o cadastro foi feito pelo usuário durante uma pausa,
+e a confirmação ACCOUNT CREATED não foi observada/capturada. A sessão autenticada
+é evidência parcial, insuficiente para aprovar o cadastro completo. WEB-PAG-02
+falhou em relação ao caso escrito: o TXT efetivamente baixado contém cliente e
+total, mas não itens/quantidades. Isso pede revisão do critério contra o contrato
+do site, não comprova por si só um defeito no produto.
+
+O [relato por caso](./rodada-manual-e2e-01.md) registra as ressalvas e os links reais
+de acesso autenticado. O compartilhamento público não foi realizado: o responsável
+solicitou encerrar a operação e concluir a atualização no GitHub. Vídeo narrado:
+**não gravado**. Não houve nova execução para substituir os resultados existentes.
+
+Portanto, o material não deve ser declarado integralmente aprovado: persistem a
+falha e o bloqueio manuais, as falhas de tempo da API, a execução Cypress bloqueada
+e a ausência de compartilhamento para correção e vídeo.
 
 ## Publicação
 
