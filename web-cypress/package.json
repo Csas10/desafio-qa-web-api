@@ -1,0 +1,21 @@
+{
+  "name": "qa-web-automationexercise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fluxo de pedido no Automation Exercise com Cypress e Cucumber",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "cypress run --browser electron",
+    "test:open": "cypress open",
+    "check": "node --check cypress.config.cjs && node --check cypress/e2e/step_definitions/pedidoSteps.js",
+    "verify": "cypress verify"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "28.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "2.2.8",
+    "cypress": "16.3.0",
+    "esbuild": "0.28.2"
+  }
+}
