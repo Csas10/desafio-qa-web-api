@@ -68,10 +68,17 @@ Cypress 16.3.0, Linux x64. Nenhum espelho ou rota alternativa foi usado.
 ## Gestão manual e apresentação
 
 21 casos documentados: PASS na conferência de contagem e unicidade; 7 suítes e 3 casos
-por suíte. Rodada manual: **NOT RUN**. O CSV não é evidência de testes executados.
-Testomat apresentou tela de login; projeto, importação, plano, execução e
-compartilhamento ainda não foram realizados na conta. Não existe link de Testomat
-ou de vídeo nesta entrega de código. Vídeo narrado: **não gravado**.
+por suíte. Login no Testomat via GitHub concluído. Projeto criado sem dados de demo,
+21 casos importados e contagens conferidas; conteúdo do WEB-HOM-01 inspecionado.
+Plano E2E 484bb46d salvo com 9 casos. Manual Run cdd2c7f3 criada e aberta, com
+0/9 concluídos e 9 Pending; nenhum teste foi marcado Passed, Failed ou Skipped.
+Os links reais de acesso autenticado estão no [guia de gestão](./gestao-testomat.md).
+
+Execução dos casos e anexação de evidências: **NOT RUN** neste checkpoint. A página
+Signup / Login do Automation Exercise foi aberta para iniciar o cadastro de teste,
+mas isso não cumpre sozinho um caso. Compartilhamento público para correção:
+**pendente**. Vídeo narrado: **não gravado**. O CSV e a criação da rodada não são
+evidências de testes executados.
 
 Portanto, o material não deve ser declarado integralmente aprovado: há falhas de
 tempo medidas e requisitos de execução/gestão ainda não concluídos.
