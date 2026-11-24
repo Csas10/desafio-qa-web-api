@@ -43,10 +43,16 @@ sessão autenticada e não são substituídos por screenshots automatizados.
 
 Não há vídeo explicativo gravado neste repositório. O roteiro não é uma gravação.
 O teste Web não foi executado neste ambiente: o download do aplicativo Cypress
-retornou HTTP 403. O Newman executou 9 requests e 45 asserções: 36 passaram e 9
-falharam no limite de tempo de 2000ms. Resultado global FAIL, preservado nas evidências.
+retornou HTTP 403. O Newman foi executado duas vezes. Em cada rodada foram 9 requests
+e 45 asserções: 36 passaram e 9 falharam no limite de tempo de 2000ms. Os dois
+resultados globais FAIL foram preservados, sem elevar o limite nem selecionar uma
+execução aprovada. Ver o [comparativo](./docs/resultado-validacao.md).
 
 ## Versionamento
+
+O código foi publicado em [Csas10/desafio-qa-web-api](https://github.com/Csas10/desafio-qa-web-api).
+O [registro de publicação](./docs/publicacao.md) relaciona os commits locais aos
+commits remotos equivalentes, com árvores de arquivos idênticas.
 
 `.gitignore` exclui dependências, credenciais privadas e saídas geradas. Lockfiles
 e arquivos de teste permanecem rastreados. Não enviar tokens, dados reais ou

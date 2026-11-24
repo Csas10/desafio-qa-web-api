@@ -28,6 +28,30 @@ O código de saída 1 foi preservado. Não houve retry para buscar resultado apr
 Evidências: [resumo seguro](../evidencias/newman-resumo.json) e
 [relatório HTML sanitizado](../evidencias/newman-relatorio.html).
 
+### Segunda execução comparativa
+
+Em 23/11/2026 23:12:33 (America/Sao_Paulo), uma segunda execução foi feita no mesmo
+ambiente, sem alterar coleção, limite de tempo, proxy ou credenciais. Não houve
+retry automático. Os relatórios anteriores não foram sobrescritos.
+
+| Request | Execução 01 (ms) | Execução 02 (ms) | Tempo <2000ms na execução 02 |
+| --- | --- | --- | --- |
+| API-AUT-01 Referência | 6504 | 8833 | FAIL |
+| API-AUT-02 Login | 6173 | 6246 | FAIL |
+| API-AUT-03 auth/me | 6701 | 6083 | FAIL |
+| API-PRO-01 Adicionar | 6194 | 6160 | FAIL |
+| API-PRO-02 Atualizar | 6648 | 6679 | FAIL |
+| API-PRO-03 Remover | 6235 | 6233 | FAIL |
+| API-USR-01 Adicionar | 6204 | 6021 | FAIL |
+| API-USR-02 Atualizar | 6052 | 5250 | FAIL |
+| API-USR-03 Remover | 6305 | 6141 | FAIL |
+
+Resultado da segunda rodada: **FAIL**, 9 requests, 45 asserções, 36 aprovadas e 9
+falhas exclusivamente de tempo; saída 1. HTTP, Content-Type, schema e conteúdo
+passaram novamente. Isso não demonstra a causa da latência nem aprova o requisito.
+Evidências: [resumo 02](../evidencias/newman-execucao-02-resumo.json) e
+[HTML sanitizado 02](../evidencias/newman-execucao-02-relatorio.html).
+
 ## Web Cypress e Cucumber
 
 Sintaxe da configuração/steps: PASS. Carregamento dos módulos da configuração: PASS.
@@ -38,6 +62,8 @@ Execução E2E: **BLOCKED**. Download oficial do aplicativo Cypress 16.3.0 retor
 HTTP 403 antes de iniciar o navegador. A instalação dos pacotes JavaScript sem o
 aplicativo foi usada somente para análise estática; não é uma execução alternativa
 de Cypress. Nenhum cadastro/pagamento Web foi realizado por esse cenário aqui.
+Uma segunda tentativa pelo mesmo instalador oficial também retornou HTTP 403 para
+Cypress 16.3.0, Linux x64. Nenhum espelho ou rota alternativa foi usado.
 
 ## Gestão manual e apresentação
 
@@ -52,8 +78,10 @@ tempo medidas e requisitos de execução/gestão ainda não concluídos.
 
 ## Publicação
 
-O repositório GitHub Csas10/desafio-qa-web-api foi criado, mas o primeiro envio de
-conteúdo pelo conector retornou HTTP 403, Resource not accessible by integration.
-Nenhum arquivo foi publicado. O código e as evidências estão preservados no pacote
-local, sem apresentar o repositório vazio como entrega concluída. É necessário liberar
-acesso de escrita da integração ao novo repositório antes de continuar o envio.
+O bloqueio inicial HTTP 403 foi resolvido após o responsável adicionar somente
+Csas10/desafio-qa-web-api à instalação já existente, preservando os 7 repositórios
+anteriormente autorizados. A escrita foi comprovada com um arquivo real, seguida
+da publicação de 30 arquivos de código, documentação e evidências. As três árvores
+remotas foram comparadas com as árvores dos commits locais e são idênticas.
+O [registro de publicação](./publicacao.md) documenta a correspondência de commits.
+Publicação de código não equivale a aprovação dos testes ou conclusão do Testomat.
