@@ -13,6 +13,7 @@ sem package.json compartilhado e sem alterar o projeto iTech.
 - [Gestão no Testomat](./docs/gestao-testomat.md): importação e execução manual.
 - [Roteiro do vídeo](./docs/roteiro-video.md): apresentação de 3 a 5 minutos.
 - [Validação e evidências reais](./docs/resultado-validacao.md): resultados e limitações.
+- [Rodada manual E2E 01](./docs/rodada-manual-e2e-01.md): resultados por caso e ressalvas.
 
 ## Gestão no Testomat
 
@@ -20,12 +21,18 @@ sem package.json compartilhado e sem alterar o projeto iTech.
   importação conferida de 21 casos manuais, em 7 suítes com 3 casos cada.
 - [Plano E2E](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/plans/484bb46d):
   Pedido de usuário autenticado, com 9 casos selecionados.
-- [Manual Run 01](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/launch/cdd2c7f3?entry=912735680):
-  rodada aberta, 0/9 concluídos e 9 pendentes no registro deste checkpoint.
+- [Manual Run 01](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/runs/cdd2c7f3):
+  encerrada: **7 Passed, 1 Failed e 1 Skipped/Blocked**, sem casos pendentes.
+- [Relatório da rodada](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/report/cdd2c7f3):
+  pedido demonstrativo confirmado e evidências anexadas aos casos.
 
-Esses endereços exigem autenticação e não são links públicos de correção. A criação
-da rodada não comprova execução ou aprovação; anexos e resultados ainda pendem.
-O compartilhamento para correção e o vídeo permanecem pendentes.
+Esses endereços exigem autenticação; não são links públicos de correção. A fatura
+baixada não contém os itens e quantidades exigidos pelo caso escrito. O cadastro
+ficou bloqueado por falta da evidência da confirmação, pois foi realizado pelo
+usuário durante uma pausa. Os outros 12 casos não integram esta rodada E2E.
+Por orientação do responsável, a operação foi encerrada sem gerar acesso público
+ou executar novos testes. O vídeo não foi gravado. Encerrar a rodada não significa
+aprovar integralmente a entrega.
 
 ## Execução rápida
 
