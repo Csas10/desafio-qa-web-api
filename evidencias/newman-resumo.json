@@ -1,0 +1,359 @@
+{
+  "runId": "2026-11-24T01-47-58-390Z",
+  "target": "https://dummyjson.com",
+  "status": "FAIL",
+  "error": null,
+  "stats": {
+    "iterations": {
+      "total": 1,
+      "pending": 0,
+      "failed": 0
+    },
+    "items": {
+      "total": 9,
+      "pending": 0,
+      "failed": 0
+    },
+    "scripts": {
+      "total": 12,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequests": {
+      "total": 9,
+      "pending": 0,
+      "failed": 0
+    },
+    "requests": {
+      "total": 9,
+      "pending": 0,
+      "failed": 0
+    },
+    "tests": {
+      "total": 9,
+      "pending": 0,
+      "failed": 0
+    },
+    "assertions": {
+      "total": 45,
+      "pending": 0,
+      "failed": 9
+    },
+    "testScripts": {
+      "total": 9,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequestScripts": {
+      "total": 3,
+      "pending": 0,
+      "failed": 0
+    }
+  },
+  "timings": {
+    "responseAverage": 6335.111111111111,
+    "responseMin": 6052,
+    "responseMax": 6701,
+    "responseSd": 214.67310779386546,
+    "dnsAverage": 0,
+    "dnsMin": 0,
+    "dnsMax": 0,
+    "dnsSd": 0,
+    "firstByteAverage": 0,
+    "firstByteMin": 0,
+    "firstByteMax": 0,
+    "firstByteSd": 0,
+    "started": 1795484878578,
+    "completed": 1795484936719
+  },
+  "assertions": [
+    {
+      "request": "API-AUT-01 Referencia independente do usuario",
+      "statusCode": 200,
+      "responseTimeMs": 6504,
+      "tests": [
+        {
+          "name": "HTTP 200",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-AUT-02 Login e captura de token",
+      "statusCode": 200,
+      "responseTimeMs": 6173,
+      "tests": [
+        {
+          "name": "HTTP 200",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-AUT-03 Bearer e identidade em auth/me",
+      "statusCode": 200,
+      "responseTimeMs": 6701,
+      "tests": [
+        {
+          "name": "HTTP 200",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-PRO-01 Adicionar produto",
+      "statusCode": 201,
+      "responseTimeMs": 6194,
+      "tests": [
+        {
+          "name": "HTTP 201",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-PRO-02 Atualizar produto existente",
+      "statusCode": 200,
+      "responseTimeMs": 6648,
+      "tests": [
+        {
+          "name": "HTTP 200",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-PRO-03 Remover produto existente",
+      "statusCode": 200,
+      "responseTimeMs": 6235,
+      "tests": [
+        {
+          "name": "HTTP 200",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-USR-01 Adicionar usuario",
+      "statusCode": 201,
+      "responseTimeMs": 6204,
+      "tests": [
+        {
+          "name": "HTTP 201",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-USR-02 Atualizar usuario 2",
+      "statusCode": 200,
+      "responseTimeMs": 6052,
+      "tests": [
+        {
+          "name": "HTTP 200",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    },
+    {
+      "request": "API-USR-03 Remover usuario 1",
+      "statusCode": 200,
+      "responseTimeMs": 6305,
+      "tests": [
+        {
+          "name": "HTTP 200",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Tempo menor que 2000ms",
+          "passed": false,
+          "errorType": "AssertionError"
+        },
+        {
+          "name": "Content-Type JSON",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Schema com campos e tipos obrigatorios",
+          "passed": true,
+          "errorType": null
+        },
+        {
+          "name": "Conteudo esperado",
+          "passed": true,
+          "errorType": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,377 @@
+{
+  "info": {
+    "name": "QA Final — DummyJSON",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "CRUD simulado não persistente; ids existentes usados no PUT/DELETE. Token capturado apenas após validação de identidade. Todas as chamadas exigem tempo <2000ms."
+  },
+  "item": [
+    {
+      "name": "Auth — executar na ordem",
+      "item": [
+        {
+          "name": "API-AUT-01 Referencia independente do usuario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/users/1"
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "['token','expectedUserId','expectedEmail'].forEach(k => pm.environment.unset(k));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"firstName\",\"lastName\",\"email\",\"username\",\"gender\",\"image\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"firstName\":{\"type\":\"string\"},\"lastName\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"},\"gender\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.eql(1);",
+                  "pm.expect(j.username).to.eql(pm.environment.get('username'));",
+                  "});",
+                  "if (pm.response.code === 200) { const j = pm.response.json(); if (j.id === 1 && j.username === pm.environment.get('username') && typeof j.email === 'string') { pm.environment.set('expectedUserId', j.id); pm.environment.set('expectedEmail', j.email); } }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "API-AUT-02 Login e captura de token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\",\n  \"expiresInMins\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.environment.unset('token');",
+                  "if (!pm.environment.get('expectedEmail')) throw new Error('Execute API-AUT-01 antes do login');"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"firstName\",\"lastName\",\"email\",\"username\",\"gender\",\"image\",\"accessToken\",\"refreshToken\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"firstName\":{\"type\":\"string\"},\"lastName\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"},\"gender\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"accessToken\":{\"type\":\"string\",\"minLength\":1},\"refreshToken\":{\"type\":\"string\",\"minLength\":1}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.eql(Number(pm.environment.get('expectedUserId')));",
+                  "pm.expect(j.username).to.eql(pm.environment.get('username'));",
+                  "pm.expect(j.email).to.eql(pm.environment.get('expectedEmail'));",
+                  "});",
+                  "if (pm.response.code === 200) { const j = pm.response.json(); if (j.id === Number(pm.environment.get('expectedUserId')) && j.username === pm.environment.get('username') && j.email === pm.environment.get('expectedEmail') && typeof j.accessToken === 'string' && j.accessToken.length > 0) pm.environment.set('token', j.accessToken); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "API-AUT-03 Bearer e identidade em auth/me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/auth/me",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (!pm.environment.get('token')) throw new Error('Token ausente: execute a pasta Auth desde o inicio');"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"firstName\",\"lastName\",\"email\",\"username\",\"gender\",\"image\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"firstName\":{\"type\":\"string\"},\"lastName\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"},\"gender\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.eql(Number(pm.environment.get('expectedUserId')));",
+                  "pm.expect(j.username).to.eql(pm.environment.get('username'));",
+                  "pm.expect(j.email).to.eql(pm.environment.get('expectedEmail'));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Produtos — operacoes simuladas independentes",
+      "item": [
+        {
+          "name": "API-PRO-01 Adicionar produto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/products/add",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Produto QA Final\",\n  \"price\": 19.9,\n  \"category\": \"beauty\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"title\",\"price\",\"category\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"title\":{\"type\":\"string\"},\"price\":{\"type\":\"number\"},\"category\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.be.above(0);",
+                  "pm.expect(j.title).to.eql('Produto QA Final');",
+                  "pm.expect(j.price).to.eql(19.9);",
+                  "pm.expect(j.category).to.eql('beauty');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "API-PRO-02 Atualizar produto existente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/products/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Produto QA Atualizado\",\n  \"price\": 29.9\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"title\",\"price\",\"category\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"title\":{\"type\":\"string\"},\"price\":{\"type\":\"number\"},\"category\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.eql(1);",
+                  "pm.expect(j.title).to.eql('Produto QA Atualizado');",
+                  "pm.expect(j.price).to.eql(29.9);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "API-PRO-03 Remover produto existente",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/products/1"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"title\",\"price\",\"category\",\"isDeleted\",\"deletedOn\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"title\":{\"type\":\"string\"},\"price\":{\"type\":\"number\"},\"category\":{\"type\":\"string\"},\"isDeleted\":{\"type\":\"boolean\"},\"deletedOn\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.eql(1);",
+                  "pm.expect(j.isDeleted).to.eql(true);",
+                  "pm.expect(Number.isNaN(Date.parse(j.deletedOn))).to.eql(false);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Usuarios — operacoes simuladas independentes",
+      "item": [
+        {
+          "name": "API-USR-01 Adicionar usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/users/add",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"QA\",\n  \"lastName\": \"Final\",\n  \"email\": \"qa-final@example.com\",\n  \"age\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"firstName\",\"lastName\",\"email\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"firstName\":{\"type\":\"string\"},\"lastName\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.be.above(0);",
+                  "pm.expect(j.firstName).to.eql('QA');",
+                  "pm.expect(j.lastName).to.eql('Final');",
+                  "pm.expect(j.email).to.eql('qa-final@example.com');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "API-USR-02 Atualizar usuario 2",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/users/2",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lastName\": \"QA Atualizado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"firstName\",\"lastName\",\"email\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"firstName\":{\"type\":\"string\"},\"lastName\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.eql(2);",
+                  "pm.expect(j.lastName).to.eql('QA Atualizado');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "API-USR-03 Remover usuario 1",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/users/1"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Tempo menor que 2000ms', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test('Content-Type JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\\/json/i));",
+                  "pm.test('Schema com campos e tipos obrigatorios', () => pm.response.to.have.jsonSchema({\"type\":\"object\",\"required\":[\"id\",\"firstName\",\"lastName\",\"email\",\"isDeleted\",\"deletedOn\"],\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":1},\"firstName\":{\"type\":\"string\"},\"lastName\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"isDeleted\":{\"type\":\"boolean\"},\"deletedOn\":{\"type\":\"string\"}},\"additionalProperties\":true}));",
+                  "pm.test('Conteudo esperado', () => { const j = pm.response.json();",
+                  "pm.expect(j.id).to.eql(1);",
+                  "pm.expect(j.isDeleted).to.eql(true);",
+                  "pm.expect(Number.isNaN(Date.parse(j.deletedOn))).to.eql(false);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
