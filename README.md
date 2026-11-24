@@ -1,0 +1,56 @@
+# Desafio de QA Web e API
+
+Atividade final de Qualidade e Teste de Software: testes de compra no Automation
+Exercise e testes de API no DummyJSON. Um monorepo, duas instalações independentes,
+sem package.json compartilhado e sem alterar o projeto iTech.
+
+## Conteúdo
+
+- [Web Cypress e Cucumber](./web-cypress/README.md): fluxo de pedido e instruções.
+- [API Postman e Newman](./api-newman/README.md): coleção, ambiente e execução.
+- [Plano de testes](./docs/plano-testes.md): escopo, plano E2E e critérios de aceite.
+- [21 casos Web](./docs/casos-web.md): 7 suítes com 3 casos completos cada.
+- [Gestão no Testomat](./docs/gestao-testomat.md): importação e execução manual.
+- [Roteiro do vídeo](./docs/roteiro-video.md): apresentação de 3 a 5 minutos.
+- [Validação e evidências reais](./docs/resultado-validacao.md): resultados e limitações.
+
+## Execução rápida
+
+Em terminais separados, a partir da raiz:
+
+```bash
+cd web-cypress
+npm ci
+npx cypress run
+```
+
+```bash
+cd api-newman
+npm ci
+npm test
+```
+
+Node.js 22 ou 24; dependências e lockfiles próprios em cada subpasta. Verificar os
+requisitos específicos nos READMEs. O runner de API gera HTML/JUnit e retorna falha
+quando o contrato ou o tempo de 2000ms não é atendido.
+
+## Delimitação da entrega
+
+Os casos, plano, código de automação e scripts de geração são artefatos deste
+repositório. Não foram criados links de Testomat ou vídeo sem existir uma entrega
+real correspondente. A execução manual e o compartilhamento no Testomat exigem
+sessão autenticada e não são substituídos por screenshots automatizados.
+
+Não há vídeo explicativo gravado neste repositório. O roteiro não é uma gravação.
+O teste Web não foi executado neste ambiente: o download do aplicativo Cypress
+retornou HTTP 403. O Newman executou 9 requests e 45 asserções: 36 passaram e 9
+falharam no limite de tempo de 2000ms. Resultado global FAIL, preservado nas evidências.
+
+## Versionamento
+
+`.gitignore` exclui dependências, credenciais privadas e saídas geradas. Lockfiles
+e arquivos de teste permanecem rastreados. Não enviar tokens, dados reais ou
+node_modules. Não usar `git remote add origin https://github.com` sem owner/repo:
+esse endereço não identifica um repositório. Usar somente a URL real fornecida pelo
+GitHub após a criação. Para uma pasta já versionada, não repetir git init nem
+reescrever o histórico; conferir `git status` e `git remote -v` antes do push.

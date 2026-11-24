@@ -1,0 +1,12 @@
+**/node_modules/
+**/cypress/videos/
+**/cypress/screenshots/
+**/cypress/downloads/
+**/newman/
+**/reports/
+**/.env
+**/.env.*
+!**/.env.example
+**/cypress.env.json
+*.log
+.DS_Store

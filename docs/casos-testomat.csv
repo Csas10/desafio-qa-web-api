@@ -1,0 +1,207 @@
+﻿"ID","Title","Status","Folder","Emoji","Priority","Tags","Owner","Description","Labels","Issues"
+"","WEB-HOM-01 Carregar banner principal","manual","/Home","","normal","WEB-HOM-01","","Pré-condições: Navegador sem sessão.
+
+Passos:
+1. Abrir a Home.
+2. Conferir logo, menu e banner.
+
+Resultado esperado: Banner e navegação visíveis sem impedir uso da página.
+
+Evidência: Print da Home com URL.","",""
+"","WEB-HOM-02 Buscar produto a partir da Home","manual","/Home","","normal","WEB-HOM-02","","Pré-condições: Home aberta; produto Blue Top disponível.
+
+Passos:
+1. Clicar Products no menu superior.
+2. Buscar Blue Top em Search Product.
+3. Conferir os resultados.
+
+Resultado esperado: Busca em Products retorna itens compatíveis. Não pressupõe campo de busca na Home.
+
+Evidência: Print da navegação e resultados.","",""
+"","WEB-HOM-03 Assinar newsletter","manual","/Home","","normal","WEB-HOM-03","","Pré-condições: Home aberta; email sintético exclusivo.
+
+Passos:
+1. Rolar ao rodapé Subscription.
+2. Informar email sintético válido.
+3. Acionar assinatura.
+
+Resultado esperado: Mensagem confirma inscrição sem email real de terceiros.
+
+Evidência: Print da confirmação.","",""
+"","WEB-LOG-01 Autenticar credenciais válidas","manual","/Login","","normal","WEB-LOG-01","","Pré-condições: Conta sintética existente; sessão deslogada.
+
+Passos:
+1. Abrir Signup / Login.
+2. Informar credenciais da conta.
+3. Clicar Login.
+
+Resultado esperado: Logged in as corresponde à conta e sessão está autenticada.
+
+Evidência: Print da identificação sem senha.","",""
+"","WEB-LOG-02 Rejeitar senha inválida","manual","/Login","","normal","WEB-LOG-02","","Pré-condições: Conta sintética existente; sessão deslogada.
+
+Passos:
+1. Abrir login.
+2. Informar email válido e senha incorreta.
+3. Enviar formulário.
+
+Resultado esperado: Erro visível; nenhuma sessão autenticada é criada.
+
+Evidência: Print do erro.","",""
+"","WEB-LOG-03 Encerrar sessão","manual","/Login","","normal","WEB-LOG-03","","Pré-condições: Conta sintética autenticada.
+
+Passos:
+1. Clicar Logout.
+2. Conferir página e menu.
+
+Resultado esperado: Identificação autenticada desaparece e login volta a estar disponível.
+
+Evidência: Print do estado deslogado.","",""
+"","WEB-CAD-01 Cadastrar novo usuário completo","manual","/Cadastro","","normal","WEB-CAD-01","","Pré-condições: Sessão deslogada; email exclusivo e dados fictícios de conta/endereço.
+
+Passos:
+1. Preencher New User Signup e avançar.
+2. Informar todos os campos obrigatórios de conta/endereço.
+3. Clicar Create Account e Continue.
+
+Resultado esperado: Conta criada com confirmação e identificação. Preservar para casos dependentes.
+
+Evidência: Prints da confirmação e identificação sem senha.","",""
+"","WEB-CAD-02 Rejeitar email existente","manual","/Cadastro","","normal","WEB-CAD-02","","Pré-condições: Conta sintética existente; sessão deslogada.
+
+Passos:
+1. Iniciar signup com o mesmo email.
+2. Tentar avançar.
+
+Resultado esperado: Mensagem de duplicidade; não há segunda conta com o mesmo email.
+
+Evidência: Print da duplicidade.","",""
+"","WEB-CAD-03 Exigir campos obrigatórios","manual","/Cadastro","","normal","WEB-CAD-03","","Pré-condições: Signup iniciado com email sintético exclusivo.
+
+Passos:
+1. Na etapa de conta/endereço deixar um campo obrigatório vazio.
+2. Tentar criar conta.
+3. Registrar qual campo bloqueou a submissão.
+
+Resultado esperado: Validação indica o campo e não há confirmação de criação.
+
+Evidência: Print da validação e nome do campo.","",""
+"","WEB-PRO-01 Conferir detalhes do produto","manual","/Página de Produto","","normal","WEB-PRO-01","","Pré-condições: Products aberta.
+
+Passos:
+1. Abrir View Product de um item.
+2. Comparar nome e preço com listagem.
+3. Conferir categoria, marca e disponibilidade.
+
+Resultado esperado: Detalhes correspondem ao item e campos essenciais estão visíveis.
+
+Evidência: Print dos detalhes.","",""
+"","WEB-PRO-02 Alterar quantidade e adicionar","manual","/Página de Produto","","normal","WEB-PRO-02","","Pré-condições: Carrinho vazio; detalhes do produto aberto e unitário anotado.
+
+Passos:
+1. Definir Quantity como 2.
+2. Adicionar ao carrinho.
+3. Abrir View Cart.
+
+Resultado esperado: Quantidade 2 e subtotal igual a duas vezes o unitário.
+
+Evidência: Prints da quantidade e linha do carrinho.","",""
+"","WEB-PRO-03 Enviar avaliação do produto","manual","/Página de Produto","","normal","WEB-PRO-03","","Pré-condições: Produto aberto; nome/email sintéticos.
+
+Passos:
+1. Preencher Write Your Review.
+2. Informar nome, email e texto sintéticos.
+3. Enviar avaliação.
+
+Resultado esperado: Mensagem de agradecimento confirma envio demonstrativo.
+
+Evidência: Print da confirmação da review.","",""
+"","WEB-CAR-01 Adicionar produto","manual","/Carrinho","","normal","WEB-CAR-01","","Pré-condições: Carrinho vazio.
+
+Passos:
+1. Adicionar item pela listagem.
+2. Abrir Cart.
+
+Resultado esperado: Item correto, unitário e quantidade 1 no carrinho.
+
+Evidência: Print da linha incluída.","",""
+"","WEB-CAR-02 Remover item","manual","/Carrinho","","normal","WEB-CAR-02","","Pré-condições: Carrinho com exatamente um item.
+
+Passos:
+1. Acionar remoção na linha do produto.
+2. Aguardar atualização.
+
+Resultado esperado: Item removido; Cart is empty exibido.
+
+Evidência: Prints antes/depois da remoção.","",""
+"","WEB-CAR-03 Validar cálculo de valores","manual","/Carrinho","","normal","WEB-CAR-03","","Pré-condições: Carrinho com preços conhecidos e quantidade maior que 1 em algum item.
+
+Passos:
+1. Anotar unitários e quantidades.
+2. Calcular subtotais e soma.
+3. Comparar linhas e resumo do checkout quando autenticado.
+
+Resultado esperado: Cada subtotal é unitário vezes quantidade; total não inclui itens excluídos.
+
+Evidência: Print do carrinho e cálculo em texto.","",""
+"","WEB-CHK-01 Exigir autenticação","manual","/Checkout","","normal","WEB-CHK-01","","Pré-condições: Deslogado; carrinho com produto.
+
+Passos:
+1. Abrir Cart.
+2. Clicar Proceed To Checkout.
+
+Resultado esperado: Solicita login/cadastro e não permite concluir deslogado.
+
+Evidência: Print do bloqueio/modal.","",""
+"","WEB-CHK-02 Validar endereço de entrega","manual","/Checkout","","normal","WEB-CHK-02","","Pré-condições: Conta sintética autenticada, endereço conhecido e carrinho com produto.
+
+Passos:
+1. Prosseguir ao checkout.
+2. Comparar entrega/cobrança com a conta.
+3. Conferir itens, quantidade e total.
+
+Resultado esperado: Endereços e resumo correspondem à execução.
+
+Evidência: Print do checkout com dados sintéticos.","",""
+"","WEB-CHK-03 Confirmar pedido autenticado","manual","/Checkout","","normal","WEB-CHK-03","","Pré-condições: Conta sintética autenticada, carrinho validado e dados fictícios de pagamento.
+
+Passos:
+1. Conferir endereços e resumo.
+2. Informar comentário e clicar Place Order.
+3. Preencher pagamento demonstrativo.
+4. Acionar Pay and Confirm Order.
+
+Resultado esperado: Order Placed e confirmação visíveis. Nenhum cartão real utilizado.
+
+Evidência: Prints do carrinho, checkout e confirmação.","",""
+"","WEB-PAG-01 Finalizar com dados demonstrativos aceitos","manual","/Pagamento e Contato","","normal","WEB-PAG-01","","Pré-condições: Outro pedido sintético pronto para pagamento; dados no formato aceito pelo site.
+
+Passos:
+1. Preencher os campos de pagamento fictício.
+2. Confirmar uma única vez.
+3. Conferir a mensagem final.
+
+Resultado esperado: Pedido de prática confirmado, sem interpretar isso como validação bancária.
+
+Evidência: Print da confirmação sem dados financeiros reais.","",""
+"","WEB-PAG-02 Baixar fatura","manual","/Pagamento e Contato","","normal","WEB-PAG-02","","Pré-condições: Pedido confirmado com Download Invoice disponível.
+
+Passos:
+1. Clicar Download Invoice.
+2. Verificar arquivo salvo.
+3. Abrir e comparar itens, quantidade e valores ao pedido.
+
+Resultado esperado: Fatura real baixada e coerente. Não exigir PDF se o site servir outro formato.
+
+Evidência: Arquivo baixado e conferência do conteúdo.","",""
+"","WEB-CON-01 Enviar Contact Us","manual","/Pagamento e Contato","","normal","WEB-CON-01","","Pré-condições: Nome/email sintéticos e arquivo sem dados pessoais.
+
+Passos:
+1. Abrir Contact Us.
+2. Preencher dados sintéticos e mensagem.
+3. Anexar arquivo de teste se necessário.
+4. Enviar e confirmar o diálogo.
+
+Resultado esperado: Mensagem confirma envio e permite voltar à Home.
+
+Evidência: Print da confirmação do contato.","",""
