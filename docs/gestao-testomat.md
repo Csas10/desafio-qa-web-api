@@ -40,16 +40,23 @@ Formato Classical para descrições manuais, sem dados de demonstração. Isso n
 altera os cenários Gherkin do módulo Cypress/Cucumber.
 
 Plano salvo: [Pedido de usuário autenticado](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/plans/484bb46d),
-com os 9 casos e a ordem lógica documentados no plano local. Rodada criada:
-[Manual Run 01](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/launch/cdd2c7f3?entry=912735680).
-No checkpoint, 0/9 concluídos, 0 Passed, 0 Failed, 0 Skipped e 9 Pending.
-Não foi usado Finish Run nem atribuído resultado presumido.
+com os 9 casos e a ordem lógica documentados no plano local. Rodada encerrada com
+Finish Run: [Manual Run 01](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/runs/cdd2c7f3).
+Resultado: **7 Passed, 1 Failed, 1 Skipped/Blocked e 0 Pending**; resultado global
+Failed. Nove classificações não equivalem a nove casos aprovados.
 
-O site Automation Exercise abriu normalmente e foi acessada a página Signup / Login.
-Cadastro de conta de teste, execução dos casos, anexação das evidências, rodada
-completa dos 21 casos e compartilhamento para correção permanecem pendentes.
-Os links acima são de acesso autenticado, não públicos; não foi alterada a exposição
-do projeto nem enviado convite. O vídeo não foi gravado.
+O [relatório autenticado](https://app.testomat.io/projects/desafio-qa-web-automation-exercise/report/cdd2c7f3)
+contém os resultados e anexos reais. O pedido foi confirmado com dados fictícios.
+O cadastro ficou bloqueado por falta da evidência da confirmação, e a fatura TXT
+falhou perante o critério escrito de conferir itens e quantidades. O
+[registro detalhado](./rodada-manual-e2e-01.md) preserva essas limitações.
+
+Os outros 12 casos permanecem fora desta rodada, sem resultado de execução aqui.
+Não foi iniciada uma rodada completa dos 21 casos. Os endereços acima exigem
+autenticação e não são links públicos de correção. A opção de relatório protegido
+foi consultada, mas o compartilhamento foi cancelado antes da criação, conforme
+orientação do responsável para encerrar a operação. Não se alterou a exposição do
+projeto nem se enviou convite. O vídeo não foi gravado.
 
 Referências: https://docs.testomat.io/project/import-export/import/import-tests-from-csv-xlsx/
 e https://docs.testomat.io/project/runs/reports/
